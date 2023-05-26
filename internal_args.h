@@ -12,8 +12,9 @@ typedef struct __line
     char **string;
     int height;
 } Line;
-
-void push(Line *ptr, char *name);
-void pop(Line *ptr);
-void show(Line *ptr);
+void internal_args_init(Line *ptr);
+void internal_args_push(Line *ptr, char *name);
+void internal_args_pop(Line *ptr);
+void internal_args_show(Line *ptr);
+void internal_args_init(Line *ptr);
 #endif

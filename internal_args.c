@@ -5,7 +5,11 @@
 
 #define BUF_SIZE 256
 
-void push(Line *ptr, char *name)
+void internal_args_init(Line *ptr)
+{
+    ptr->height = 0;
+}
+void internal_args_push(Line *ptr, char *name)
 {
 
     if (ptr->height == 0)
@@ -25,7 +29,7 @@ void push(Line *ptr, char *name)
     puts("INTERNAL: string added!(3/3)");
 };
 
-void pop(Line *ptr)
+void internal_args_pop(Line *ptr)
 {
     if (ptr->height > 0)
     {
@@ -37,10 +41,15 @@ void pop(Line *ptr)
     puts("Cannot delete stack!");
 }
 
-void show(Line *ptr)
+void internal_args_show(Line *ptr)
 {
     for (int i = 0; i < ptr->height; i++)
     {
         printf("String %d:%s\n", i + 1, ptr->string[i]);
     }
+}
+
+void internal_args_init(Line *ptr)
+{
+    free(ptr->string);
 }
