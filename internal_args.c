@@ -53,3 +53,20 @@ void internal_args_init(Line *ptr)
 {
     free(ptr->string);
 }
+
+void internal_args_tokens(Line *ptr, char line[])
+{
+    char *buf;
+
+    buf = strtok(line, " ");
+    internal_args_push(ptr, buf);
+    internal_args_show(ptr);
+
+    while (buf[sizeof(buf)] != '\0')
+    {
+        buf = strtok(NULL, " ");
+        internal_args_push(ptr, buf);
+    }
+
+    // internal_args_show(&arguments);
+}

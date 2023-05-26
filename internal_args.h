@@ -17,4 +17,5 @@ void internal_args_push(Line *ptr, char *name);
 void internal_args_pop(Line *ptr);
 void internal_args_show(Line *ptr);
 void internal_args_init(Line *ptr);
+void internal_args_tokens(Line *ptr, char line[]);
 #endif
