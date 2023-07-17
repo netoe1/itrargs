@@ -1,5 +1,5 @@
-#ifndef INTERNAL_ARGS_H
-#define INTERNAL_ARGS_H
+#ifndef ITRARGS_H
+#define ITRARGS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,10 +12,10 @@ typedef struct __line
     char **string;
     int height;
 } Line;
-void internal_args_init(Line *ptr);
-void internal_args_push(Line *ptr, char *name);
-void internal_args_pop(Line *ptr);
-void internal_args_show(Line *ptr);
-void internal_args_end(Line *ptr);
-void internal_args_tokens(Line *ptr, char line[]);
+void ITRARGS_init(Line *ptr);
+void ITRARGS_push(Line *ptr, char *name);
+void ITRARGS_pop(Line *ptr);
+void ITRARGS_show(Line *ptr);
+void ITRARGS_end(Line *ptr);
+void ITRARGS_tokens(Line *ptr, char line[]);
 #endif
