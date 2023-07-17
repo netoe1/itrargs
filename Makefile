@@ -1,5 +1,5 @@
 PATH_TO_OBJ = ./
-FILENAME_C= internal_args.c
+FILENAME_C= itrargs.c
 
 all:
-	gcc -c $(FILENAME_C) -o internal_args.o -I $(PATH_TO_OBJ)
+	gcc -c $(FILENAME_C) -o itrargs.o -I $(PATH_TO_OBJ)
