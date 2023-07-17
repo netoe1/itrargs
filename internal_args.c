@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "internal_args.h"
+#include "itrargs.h"
 
 #define BUF_SIZE 256
 
-void internal_args_init(Line *ptr)
+void ITRARGS_init(Line *ptr)
 {
     ptr->height = 0;
 }
-void internal_args_push(Line *ptr, char *name)
+void ITRARGS_push(Line *ptr, char *name)
 {
 
     if (ptr->height == 0)
@@ -29,7 +29,7 @@ void internal_args_push(Line *ptr, char *name)
     puts("INTERNAL: string added!(3/3)");
 };
 
-void internal_args_pop(Line *ptr)
+void ITRARGS_pop(Line *ptr)
 {
     if (ptr->height > 0)
     {
@@ -41,7 +41,7 @@ void internal_args_pop(Line *ptr)
     puts("Cannot delete stack!");
 }
 
-void internal_args_show(Line *ptr)
+void ITRARGS_show(Line *ptr)
 {
     for (int i = 0; i < ptr->height; i++)
     {
@@ -49,27 +49,27 @@ void internal_args_show(Line *ptr)
     }
 }
 
-void internal_args_end(Line *ptr)
+void ITRARGS_end(Line *ptr)
 {
     free(ptr->string);
 }
 
-void internal_args_tokens(Line *ptr, char line[])
+void ITRARGS_tokens(Line *ptr, char line[])
 {
     char *buf = NULL;
 
     buf = strtok(line, " ");
-    internal_args_push(ptr, buf);
-    internal_args_show(ptr);
+    ITRARGS_push(ptr, buf);
+    ITRARGS_show(ptr);
 
     while (buf != NULL)
     {
         buf = strtok(NULL, " ");
         if (buf != NULL)
         {
-            internal_args_push(ptr, buf);
+            ITRARGS_push(ptr, buf);
         }
     }
 
-    // internal_args_show(&arguments);
+    // ITRARGS_show(&arguments);
 }
