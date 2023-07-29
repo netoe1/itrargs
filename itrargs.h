@@ -11,11 +11,11 @@ typedef struct __line
 {
     char **string;
     int height;
-} Line;
-void ITRARGS_init(Line *ptr);
-void ITRARGS_push(Line *ptr, char *name);
-void ITRARGS_pop(Line *ptr);
-void ITRARGS_show(Line *ptr);
-void ITRARGS_end(Line *ptr);
-void ITRARGS_tokens(Line *ptr, char line[]);
+} ITRARGS_Line;
+void ITRARGS_init(ITRARGS_Line *ptr);
+void ITRARGS_push(ITRARGS_Line *ptr, char *name);
+void ITRARGS_pop(ITRARGS_Line *ptr);
+void ITRARGS_show(ITRARGS_Line *ptr);
+void ITRARGS_end(ITRARGS_Line *ptr);
+void ITRARGS_tokens(ITRARGS_Line *ptr, char line[]);
 #endif
