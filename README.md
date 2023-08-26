@@ -11,10 +11,6 @@ This is a library to facilitate operations with arguments in C.
 #include "itrargs.h"
 ```
 
-<h3>
-  Some backend things about lib:
-</h3>
-
 </br>
 
 <p>
