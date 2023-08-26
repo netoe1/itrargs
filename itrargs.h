@@ -13,9 +13,8 @@ typedef struct __line
     int height;
 } ITRARGS_Line;
 void ITRARGS_init(ITRARGS_Line *ptr);
-void ITRARGS_push(ITRARGS_Line *ptr, char *name);
-void ITRARGS_pop(ITRARGS_Line *ptr);
 void ITRARGS_show(ITRARGS_Line *ptr);
-void ITRARGS_end(ITRARGS_Line *ptr);
-void ITRARGS_tokens(ITRARGS_Line *ptr, char line[]);
+void ITRARGS_free(ITRARGS_Line *ptr);
+void ITRARGS_tokens(ITRARGS_Line *ptr, char *line);
+
 #endif

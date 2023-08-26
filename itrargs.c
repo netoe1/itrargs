@@ -17,7 +17,7 @@ void ITRARGS_init(ITRARGS_Line *ptr)
 
     return;
 }
-void ITRARGS_push(ITRARGS_Line *ptr, char *name)
+static void ITRARGS_push(ITRARGS_Line *ptr, char *name)
 {
 
     if (ptr != NULL && name != NULL)
@@ -36,12 +36,11 @@ void ITRARGS_push(ITRARGS_Line *ptr, char *name)
             ptr->string[ptr->height - 1] = (char *)realloc(ptr->string[ptr->height - 1], sizeof(char) * BUF_SIZE);
         }
         strncpy(ptr->string[ptr->height - 1], name, strlen(name));
-        strncat(ptr->string[ptr->height - 1], "\0", sizeof(ptr->string[ptr->height - 1]));
+        ptr->string[strlen(name) + 1] = '\0';
         puts("INTERNAL: string added!(3/3)");
     }
 };
-
-void ITRARGS_pop(ITRARGS_Line *ptr)
+static void ITRARGS_pop(ITRARGS_Line *ptr)
 {
     if (ptr != NULL)
     {
@@ -55,7 +54,6 @@ void ITRARGS_pop(ITRARGS_Line *ptr)
 
     puts("Cannot delete stack!");
 }
-
 void ITRARGS_show(ITRARGS_Line *ptr)
 {
     if (ptr != NULL)
@@ -67,22 +65,23 @@ void ITRARGS_show(ITRARGS_Line *ptr)
         }
     }
 }
-
-void ITRARGS_end(ITRARGS_Line *ptr)
+void ITRARGS_free(ITRARGS_Line *ptr)
 {
     if (ptr != NULL)
     {
         free(ptr->string);
     }
 }
-
-void ITRARGS_tokens(ITRARGS_Line *ptr, char line[])
+void ITRARGS_tokens(ITRARGS_Line *ptr, char *line)
 {
+    char buffer[512];
+    strncpy(buffer, line, sizeof(buffer) - 1);
+    buffer[sizeof(buffer)] = '\0';
     if (ptr != NULL)
     {
         char *buf = NULL;
 
-        buf = strtok(line, " ");
+        buf = strtok(buffer, " ");
         ITRARGS_push(ptr, buf);
         ITRARGS_show(ptr);
 
