@@ -15,10 +15,6 @@ This is a library to facilitate operations with arguments in C.
   Some backend things about lib:
 </h3>
 
-<p>
- <strong>The data structure</strong> used by the library is the <strong>Stack</strong>, with the push and pop functions, which are internal, but you can use them as you like.
-</p>
-
 </br>
 
 <p>
@@ -27,8 +23,6 @@ This is a library to facilitate operations with arguments in C.
 
 ```c
 void ITRARGS_init(Line *ptr); // Init the structure.
-void ITRARGS_push(Line *ptr, char *name); // Push a new string to arg's line structure.
-void ITRARGS_pop(Line *ptr); // Pop the last string typed.
 void ITRARGS_show(Line *ptr); // Show the all arg in one line.
 void ITRARGS_end(Line *ptr); /*It closes\ ends the library structure, it must always be used at the end of the algorithm or function use, to avoid memory leaks!*/
 void ITRARGS_tokens(Line *ptr, char line[]); /*Separates an entire line into tokens, which you can access via array indexes.*/
