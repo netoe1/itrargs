@@ -1,4 +1,4 @@
-# internal-args-c
+# itrargs.h (old internal-args.h)
 
 This is a library to facilitate operations with arguments in C.
 
