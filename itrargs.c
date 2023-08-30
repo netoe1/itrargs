@@ -26,13 +26,13 @@ static void ITRARGS_push(ITRARGS_Line *ptr, char *name)
         if (ptr->height == 0)
         {
             // puts("INTERNAL: push for the first time!(1/3)");
-            ptr->string = (char **)malloc(sizeof(char) * ++ptr->height);
+            ptr->string = (char **)malloc(sizeof(char *) * ++ptr->height);
             ptr->string[ptr->height - 1] = (char *)malloc(sizeof(char) * BUF_SIZE);
         }
         else
         {
             // puts("INTERNAL: push more than once!(2/3)");
-            ptr->string = (char **)realloc(ptr->string, sizeof(char) * ++ptr->height);
+            ptr->string = (char **)realloc(ptr->string, sizeof(char *) * ++ptr->height);
             ptr->string[ptr->height - 1] = (char *)realloc(ptr->string[ptr->height - 1], sizeof(char) * BUF_SIZE);
         }
         strncpy(ptr->string[ptr->height - 1], name, strlen(name));
@@ -75,7 +75,7 @@ void ITRARGS_free(ITRARGS_Line *ptr)
 void ITRARGS_tokens(ITRARGS_Line *ptr, char *line)
 {
     char buffer[512];
-    strncpy(buffer, line, sizeof(buffer) - 1);
+    strncpy(buffer, line, sizeof(line) - 1);
     buffer[sizeof(buffer)] = '\0';
     if (ptr != NULL)
     {
@@ -106,7 +106,8 @@ void ITRARGS_tokens(ITRARGS_Line *ptr, char *line)
 void ITRARGS_tokens_w_pivot(ITRARGS_Line *ptr, char *line, char *pivot)
 {
     char buffer[512];
-    strcpy(buffer, line);
+    strncpy(buffer, line, sizeof(line) - 1);
+    buffer[sizeof(buffer)] = '\0';
     if (ptr != NULL)
     {
         char *buf = NULL;
