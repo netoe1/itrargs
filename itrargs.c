@@ -106,8 +106,7 @@ void ITRARGS_tokens(ITRARGS_Line *ptr, char *line)
 void ITRARGS_tokens_w_pivot(ITRARGS_Line *ptr, char *line, char *pivot)
 {
     char buffer[512];
-    strncpy(buffer, line, sizeof(buffer) - 1);
-    buffer[sizeof(buffer)] = '\0';
+    strcpy(buffer, line);
     if (ptr != NULL)
     {
         char *buf = NULL;
@@ -126,10 +125,6 @@ void ITRARGS_tokens_w_pivot(ITRARGS_Line *ptr, char *line, char *pivot)
                     ITRARGS_push(ptr, buf);
                 }
             }
-        }
-        else
-        {
-            puts("You have to set a pivot to use!");
         }
     }
     // ITRARGS_show(&arguments);
