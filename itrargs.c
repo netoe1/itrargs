@@ -116,8 +116,6 @@ void ITRARGS_tokens_w_pivot(ITRARGS_Line *ptr, char *line, char *pivot)
 
             buf = strtok(buffer, pivot);
             ITRARGS_push(ptr, buf);
-            // ITRARGS_show(ptr);
-
             while (buf != NULL)
             {
                 buf = strtok(NULL, pivot);
