@@ -106,14 +106,14 @@ void ITRARGS_tokens(ITRARGS_Line *ptr, char *line)
 void ITRARGS_tokens_w_pivot(ITRARGS_Line *ptr, char *line, char *pivot)
 {
     char buffer[512];
-    strncpy(buffer, line, sizeof(line) - 1);
-    buffer[sizeof(buffer)] = '\0';
+    strncpy(buffer, line, sizeof(buffer) - 1);
+    buffer[sizeof(buffer) - 1] = '\0'; // Correção da nul-terminação
+
     if (ptr != NULL)
     {
         char *buf = NULL;
-        if (pivot != NULL && strstr(line, pivot) != NULL)
+        if (pivot != NULL && strstr(buffer, pivot) != NULL) // Uso de buffer aqui
         {
-
             buf = strtok(buffer, pivot);
             ITRARGS_push(ptr, buf);
             while (buf != NULL)
