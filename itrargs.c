@@ -74,12 +74,13 @@ void ITRARGS_free(ITRARGS_Line *ptr)
 }
 void ITRARGS_tokens(ITRARGS_Line *ptr, char *line)
 {
-    char buffer[512];
-    strncpy(buffer, line, sizeof(line) - 1);
-    buffer[sizeof(buffer)] = '\0';
-    if (ptr != NULL)
+
+    if (ptr != NULL && line != NULL)
     {
-        char *buf = NULL;
+        char buffer[512];
+        char *buf;
+        strncpy(buffer, line, strlen(line));
+        line[strlen(line) + 1] = '\0';
         if (strstr(line, " ") != NULL)
         {
             buf = strtok(buffer, " ");
@@ -97,34 +98,32 @@ void ITRARGS_tokens(ITRARGS_Line *ptr, char *line)
         }
         else
         {
-            puts("The string hasn't a empty space!");
+            puts("ITRARGS_ERR:The string hasn't a empty space!");
         }
     }
+
     // ITRARGS_show(&arguments);
 }
 
 void ITRARGS_tokens_w_pivot(ITRARGS_Line *ptr, char *line, char *pivot)
 {
-    char buffer[512];
-    strncpy(buffer, line, sizeof(buffer) - 1);
-    buffer[sizeof(buffer) - 1] = '\0'; // Correção da nul-terminação
 
-    if (ptr != NULL)
+    if (ptr != NULL && line != NULL && pivot != NULL && strstr(line, pivot) != NULL)
     {
-        char *buf = NULL;
-        if (pivot != NULL && strstr(buffer, pivot) != NULL) // Uso de buffer aqui
+        char buffer[512];
+        char *buf;
+        strncpy(buffer, line, strlen(line));
+        buffer[strlen(line) + 1] = '\0'; // Correção da nul-terminação
+        buf = strtok(buffer, pivot);
+        ITRARGS_push(ptr, buf);
+        while (buf != NULL)
         {
-            buf = strtok(buffer, pivot);
-            ITRARGS_push(ptr, buf);
-            while (buf != NULL)
+            buf = strtok(NULL, pivot);
+            if (buf != NULL)
             {
-                buf = strtok(NULL, pivot);
-                if (buf != NULL)
-                {
-                    ITRARGS_push(ptr, buf);
-                }
+                ITRARGS_push(ptr, buf);
             }
         }
     }
-    // ITRARGS_show(&arguments);
+    ITRARGS_show(&ptr);
 }
